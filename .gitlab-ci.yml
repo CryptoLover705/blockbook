@@ -25,7 +25,7 @@ integration-test:
     - schedules
   tags:
     - blockbook
-  script: make test-integration ARGS="-run='TestIntegration/(bcash|bgold|bitcoin|dash|dogecoin|litecoin|vertcoin|zcash)=main/'"
+  script: make test-integration ARGS="-run='TestIntegration/(bcash|bgold|bitcoin|blackcoin|dash|dogecoin|litecoin|vertcoin|zcash)=main/'"
 
 backend-deploy-and-test-bcash:
   stage: backend-deploy-and-test
@@ -59,6 +59,17 @@ backend-deploy-and-test-bitcoin:
   tags:
     - blockbook
   script: ./contrib/scripts/backend-deploy-and-test.sh bitcoin
+
+backend-deploy-and-test-blackcoin:
+  stage: backend-deploy-and-test
+  only:
+    refs:
+      - master
+    changes:
+      - configs/coins/blackcoin.json
+  tags:
+    - blockbook
+  script: ./contrib/scripts/backend-deploy-and-test.sh blackcoin
 
 backend-deploy-and-test-dash:
   stage: backend-deploy-and-test
